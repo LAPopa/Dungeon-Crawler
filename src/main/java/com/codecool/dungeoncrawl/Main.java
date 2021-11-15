@@ -15,6 +15,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class Main extends Application {
     GameMap map = MapLoader.loadMap();
     Canvas canvas = new Canvas(
@@ -53,19 +55,28 @@ public class Main extends Application {
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
+//                if(!Objects.equals(map.getCell(0, -1).getTileName(), "wall")){
+//                }
                 map.getPlayer().move(0, -1);
                 refresh();
+
                 break;
             case DOWN:
+//                if(!Objects.equals(map.getCell(0, 1).getTileName(), "wall")) {
+//                }
                 map.getPlayer().move(0, 1);
                 refresh();
                 break;
             case LEFT:
+//                if(!Objects.equals(map.getCell(-1, 0).getTileName(), "wall")) {
+//                }
                 map.getPlayer().move(-1, 0);
                 refresh();
                 break;
             case RIGHT:
-                map.getPlayer().move(1,0);
+//                if(!Objects.equals(map.getCell(1, 0).getTileName(), "wall")) {
+//                }
+                map.getPlayer().move(1, 0);
                 refresh();
                 break;
         }
