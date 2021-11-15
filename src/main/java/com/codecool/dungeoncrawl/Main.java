@@ -55,27 +55,23 @@ public class Main extends Application {
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
-//                if(!Objects.equals(map.getCell(0, -1).getTileName(), "wall")){
-//                }
+
                 map.getPlayer().move(0, -1);
                 refresh();
 
                 break;
             case DOWN:
-//                if(!Objects.equals(map.getCell(0, 1).getTileName(), "wall")) {
-//                }
+
                 map.getPlayer().move(0, 1);
                 refresh();
                 break;
             case LEFT:
-//                if(!Objects.equals(map.getCell(-1, 0).getTileName(), "wall")) {
-//                }
+
                 map.getPlayer().move(-1, 0);
                 refresh();
                 break;
             case RIGHT:
-//                if(!Objects.equals(map.getCell(1, 0).getTileName(), "wall")) {
-//                }
+
                 map.getPlayer().move(1, 0);
                 refresh();
                 break;

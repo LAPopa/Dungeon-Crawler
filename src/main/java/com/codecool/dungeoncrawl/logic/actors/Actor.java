@@ -18,9 +18,10 @@ public abstract class Actor implements Drawable {
         Cell nextCell = cell.getNeighbor(dx, dy);
         cell.setActor(null); //pleaca player de pe aceasta celula
 
-        if(!Objects.equals(nextCell.getTileName(), "wall")){
-            nextCell.setActor(this); // se duce pe aceasta celula
-            cell = nextCell;
+        if(!Objects.equals(nextCell.getTileName(), "wall") && nextCell.getActor()==null){
+                nextCell.setActor(this); // se duce pe aceasta celula
+                cell = nextCell;
+
         }
 
         this.cell.setActor(this);
@@ -41,4 +42,14 @@ public abstract class Actor implements Drawable {
     public int getY() {
         return cell.getY();
     }
+
+    public void fight(int dx, int dy){
+        Cell nextCell = cell.getNeighbor(dx, dy);
+
+        if (nextCell.getActor()!=null){
+            nextCell.getActor().health-=1;
+            this.health-=1;
+        }
+    }
+
 }
