@@ -27,6 +27,15 @@ public abstract class Actor implements Drawable {
 
     }
 
+//    public void fight(int dx, int dy){
+//        Cell nextCell = cell.getNeighbor(dx, dy);
+//
+//        if (nextCell.getActor()!=null){
+//            nextCell.getActor().health-=1;
+//            this.health-=1;
+//        }
+//    }
+
     public int getHealth() {
         return health;
     }
