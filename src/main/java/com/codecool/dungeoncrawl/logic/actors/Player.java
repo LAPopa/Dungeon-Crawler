@@ -79,7 +79,7 @@ public class Player extends Actor {
     }
 
     public boolean neighbouringCellContainsItem(int dx, int dy){
-        Cell nextCell = cell.getNeighbor(dx, dy);
+        Cell nextCell = getCell().getNeighbor(dx, dy);
 
         return !Objects.equals(nextCell.getTileName(), "door") ||
                 !Objects.equals(nextCell.getTileName(), "wall") ||

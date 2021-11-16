@@ -138,25 +138,8 @@ public abstract class Actor implements Drawable {
         return cell.getY();
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
 
-    public int getStrength() {
-        return strength;
-    }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
 
-    public void fight(int dx, int dy){
-        Cell nextCell = cell.getNeighbor(dx, dy);
-
-        if (nextCell.getActor()!=null){
-            nextCell.getActor().health-=1;
-            this.health-=1;
-        }
-    }
 
 }

@@ -42,7 +42,7 @@ class ActorTest {
     @Test
     void cannotMoveIntoAnotherActor() {
         Player player = new Player(gameMap.getCell(1, 1));
-        Skeleton skeleton = new Skeleton(gameMap.getCell(2, 1),5);
+        Skeleton skeleton = new Skeleton(gameMap.getCell(2, 1));
         player.move(1, 0);
 
         assertEquals(1, player.getX());
