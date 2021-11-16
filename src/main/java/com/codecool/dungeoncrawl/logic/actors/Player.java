@@ -60,6 +60,8 @@ public class Player extends Actor {
         System.out.println(potionItem.getName()+"("+potionItem.getID()+")" + " not found in inventory!");
     }
 
+
+
     public void equipTool(Item toolItem){
         if(listOfTools.contains(toolItem)){
             if(!listOfEquippedItems.contains(toolItem)){
