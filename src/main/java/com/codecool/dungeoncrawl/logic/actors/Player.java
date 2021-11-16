@@ -53,6 +53,7 @@ public class Player extends Actor {
                 if (potionItem instanceof HealthPotion){
                     ((HealthPotion) potionItem).increaseHealth(this); // increase health
                 }
+//                listOfEquippedItems.remove(potionItem);
             }
             System.out.println(potionItem.getName()+"("+potionItem.getID()+")" + " already in use!");
         }
