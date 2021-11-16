@@ -6,13 +6,22 @@ import com.codecool.dungeoncrawl.logic.Drawable;
 import java.util.Objects;
 
 public abstract class Actor implements Drawable {
-    private Cell cell;
-    private int health = 10;
+    protected Cell cell;
+    protected int health = 10;
+    protected int strength = 10;
 
     public Actor(Cell cell) {
         this.cell = cell;
         this.cell.setActor(this);
     }
+
+    public Actor(Cell cell, int health, int strength) {
+        this.cell = cell;
+        this.cell.setActor(this);
+        this.health = health;
+        this.strength = strength;
+    }
+
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
@@ -41,6 +50,18 @@ public abstract class Actor implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     public void fight(int dx, int dy){
