@@ -4,6 +4,8 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import com.codecool.dungeoncrawl.logic.actors.*;
+import com.codecool.dungeoncrawl.logic.utils.Randomizers;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -100,6 +102,7 @@ public class Main extends Application {
     }
 
     private void refresh() {
+
         if (map.getPlayer().isDead()) {
             System.out.println("Player has died");
             map.getPlayer().getCell().setType(CellType.FLOOR);
@@ -114,12 +117,23 @@ public class Main extends Application {
                 for (int y = 0; y < map.getHeight(); y++) {
                     Cell cell = map.getCell(x, y);
                     if (cell.getActor() != null) {
+
+                        if (cell.getActor() instanceof Skeleton) {
+//                            System.out.println("Current skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
+                            System.out.println("entering skeleton movement");
+                            int sX = Randomizers.getRandomIntInRange(-1, 2);
+                            int sY = Randomizers.getRandomIntInRange(-1, 2);
+                            System.out.println("sX = " + sX + " sY = " + sY);
+                            cell.getActor().move(sX, sY);
+                            System.out.println("New skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
+                            Tiles.drawTile(context, cell.getActor(), sX, sY);
+                        }
+
                         Tiles.drawTile(context, cell.getActor(), x, y);
-                    }
-                    else if (cell.getItem() != null) {
+
+                    } else if (cell.getItem() != null) {
                         Tiles.drawTile(context, cell.getItem(), x, y);
-                    }
-                    else {
+                    } else {
                         Tiles.drawTile(context, cell, x, y);
                     }
                 }

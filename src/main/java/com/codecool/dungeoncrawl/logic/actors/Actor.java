@@ -7,7 +7,7 @@ import com.codecool.dungeoncrawl.logic.Drawable;
 import java.util.Objects;
 
 public abstract class Actor implements Drawable {
-    private Cell cell;
+    public Cell cell;
     private int health = 10;
     private int strength = 5;
     private int armor = 0;
@@ -27,11 +27,15 @@ public abstract class Actor implements Drawable {
     }
 
     public void move(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
-        cell.setActor(null);
-        if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null) {
+        Cell nextCell = getCell().getNeighbor(dx, dy);
+
+        if (nextCell.getType() != CellType.WALL && (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.FLOOR_FANCY) && nextCell.getActor() == null) {
+//            cell.setActor(null);
+//            nextCell.setActor(this);
+//            cell = nextCell;
+            getCell().setActor(null);
             nextCell.setActor(this);
-            cell = nextCell;
+            setCell(nextCell);
         }
 
         this.cell.setActor(this);
