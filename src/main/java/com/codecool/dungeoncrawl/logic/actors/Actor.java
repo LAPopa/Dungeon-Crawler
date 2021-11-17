@@ -75,7 +75,7 @@ public abstract class Actor implements Drawable {
         this.armor -= value;
     }
 
-    //TODO items to increase armor
+
     public void increaseArmor (int value) {
         this.armor += value;
     }

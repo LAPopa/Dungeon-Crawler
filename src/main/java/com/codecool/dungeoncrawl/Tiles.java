@@ -36,6 +36,8 @@ public class Tiles {
         tileMap.put("scarab", new Tile(30, 5));
         tileMap.put("passive_target", new Tile(5, 7));
         tileMap.put("sword", new Tile(0, 30));
+        tileMap.put("shield", new Tile(7, 26));
+        tileMap.put("key", new Tile (16, 23));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {

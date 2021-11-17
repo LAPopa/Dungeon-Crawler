@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.logic.items.*;
 
 import java.io.InputStream;
 import java.util.Scanner;
+import java.awt.*;
 
 public class MapLoader {
     public static GameMap loadMap() {
@@ -22,18 +23,7 @@ public class MapLoader {
                 if (x < line.length()) {
                     Cell cell = map.getCell(x, y);
                     switch (line.charAt(x)) {
-                        case 'w':
-                            cell.setType(CellType.FLOOR);
-                            new Sword(cell);
-                            break;
-                        case 'k':
-                            cell.setType(CellType.FLOOR);
-                            new Key(cell);
-                            break;
-                        case 'a':
-                            cell.setType(CellType.FLOOR);
-                            new Shield(cell);
-                            break;
+
                         case ' ':
                             cell.setType(CellType.EMPTY);
                             break;
@@ -74,6 +64,22 @@ public class MapLoader {
                         case 'c':
                             cell.setType(CellType.FLOOR);
                             new Scarab(cell);
+                            break;
+                        case 'S':
+                            cell.setType(CellType.FLOOR);
+                            Sword sword = new Sword(cell);
+                            map.addItem(sword);
+                            System.out.println(map.getItems());
+                            break;
+                        case 'K':
+                            cell.setType(CellType.FLOOR);
+                            map.setKey(new Key(cell));
+                            break;
+                        case 'A':
+                            cell.setType(CellType.FLOOR);
+                            System.out.println("setting floor for shield");
+                            new Shield(cell);
+                            System.out.println("added shield");
                             break;
 
                         default:

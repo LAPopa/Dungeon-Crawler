@@ -1,6 +1,11 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.items.Item;
+import com.codecool.dungeoncrawl.logic.items.Key;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameMap {
     private int width;
@@ -8,6 +13,10 @@ public class GameMap {
     private Cell[][] cells;
 
     private Player player;
+
+    private Key key;
+
+    private List<Item> items;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -18,6 +27,9 @@ public class GameMap {
                 cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
         }
+
+        this.items = new ArrayList<>();
+
     }
 
     public Cell getCell(int x, int y) {
@@ -32,6 +44,10 @@ public class GameMap {
         return player;
     }
 
+    public void setKey (Key key) {this.key = key;}
+
+    public Key getKey() {return key;}
+
     public int getWidth() {
         return width;
     }
@@ -39,4 +55,14 @@ public class GameMap {
     public int getHeight() {
         return height;
     }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+
 }
