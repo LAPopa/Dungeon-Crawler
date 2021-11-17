@@ -17,9 +17,10 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(this);
     }
 
-    public void setCell (Cell cell) {
+    public void setCell(Cell cell) {
         this.cell = cell;
     }
+
     public Cell getCell() {
 
         return cell;
@@ -46,11 +47,19 @@ public abstract class Actor implements Drawable {
         int playerDamage = player.getStrength();
         int targetDamage = target.getStrength();
         int targetHP = target.getHealth();
+        int targetArmor = target.getArmor();
+
+
         if (!Objects.equals(target.getTileName(), "passive_target")) {
-            target.setHealth(targetHP - playerDamage);
+
+            System.out.println("target armor" + target.getArmor());
+            target.setHealth((targetHP + targetArmor) - playerDamage);
+            target.setArmor(target.getArmor() - 2);
+            System.out.println("target armor after hit" + target.getArmor());
             player.takeHit(cell, targetDamage);
+
         } else {
-            target.setHealth(targetHP - playerDamage);
+            target.setHealth((targetHP + targetArmor) - playerDamage);
         }
 
     }
@@ -60,23 +69,20 @@ public abstract class Actor implements Drawable {
 
         int playerArmor = player.getArmor();
 
-        if (playerArmor >= 10) {
-            player.decreaseHealth(damage-playerArmor);
+        if (playerArmor >= 2) {
+            player.decreaseHealth(damage - playerArmor);
             player.decreaseArmor(2);
-        } else if (playerArmor == 2) {
-            player.decreaseHealth(damage-playerArmor);
-            player.setArmor(0);
         } else {
             player.decreaseHealth(damage);
         }
     }
 
-    public void decreaseArmor (int value) {
+    public void decreaseArmor(int value) {
         this.armor -= value;
     }
 
 
-    public void increaseArmor (int value) {
+    public void increaseArmor(int value) {
         this.armor += value;
     }
 
@@ -88,7 +94,6 @@ public abstract class Actor implements Drawable {
     public void increaseHealth(int value) {
         this.health += value;
     }
-
 
 
 //    public void fight(int dx, int dy){
@@ -129,7 +134,6 @@ public abstract class Actor implements Drawable {
     }
 
 
-
     public int getX() {
         return cell.getX();
     }
@@ -137,9 +141,6 @@ public abstract class Actor implements Drawable {
     public int getY() {
         return cell.getY();
     }
-
-
-
 
 
 }
