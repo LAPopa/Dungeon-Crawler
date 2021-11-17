@@ -1,16 +1,18 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.items.HealthPotion;
+import com.codecool.dungeoncrawl.logic.Inventory;
 import com.codecool.dungeoncrawl.logic.items.Item;
 import com.codecool.dungeoncrawl.logic.CellType;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import com.codecool.dungeoncrawl.logic.items.*;
 
 public class Player extends Actor {
 
     private String name;
+    private Inventory inventory;
     private ArrayList<Item> listOfPotions;
     private ArrayList<Item> listOfTools;
     private ArrayList<Item> listOfEquippedItems = new ArrayList<>();
@@ -19,6 +21,7 @@ public class Player extends Actor {
     public Player(Cell cell) {
 
         super(cell);
+        this.inventory = new Inventory();
         this.setHealth(100);
         this.setStrength(10);
         this.name="Test";
@@ -26,70 +29,73 @@ public class Player extends Actor {
         this.listOfTools = new ArrayList<>();
     }
 
-
-
-    //Getters and Setters
-    public ArrayList<Item> getListOfPotions() {
-        return listOfPotions;
-    }
-
-    public ArrayList<Item> getListOfTools() {
-        return listOfTools;
-    }
-
-    public ArrayList<Item> getListOfEquippedItems() {
-        return listOfEquippedItems;
-    }
-
-    public void addItemToListOfPotions(Item newItem){
-        listOfPotions.add(newItem);
-    }
-    public void addItemToListOfTools(Item newItem){
-        listOfTools.add(newItem);
-    }
-    public void addItemToListOfEquippedItems(Item newItem){
-        listOfEquippedItems.add(newItem);
-    }
-
-    public void equipPotion(Item potionItem){
-        // TO DO: use neighbouringCellContainsItem!!!
-        if (listOfPotions.contains(potionItem)){
-            if(!listOfEquippedItems.contains(potionItem)){
-                listOfEquippedItems.add(potionItem);
-                if (potionItem instanceof HealthPotion){
-                    ((HealthPotion) potionItem).increaseHealth(this); // increase health
-                }
-//                listOfEquippedItems.remove(potionItem);
-            }
-            System.out.println(potionItem.getName()+"("+potionItem.getID()+")" + " already in use!");
-        }
-        System.out.println(potionItem.getName()+"("+potionItem.getID()+")" + " not found in inventory!");
+    public Inventory getInventory() {
+        return inventory;
     }
 
 
 
-    public void equipTool(Item toolItem){
-        if(listOfTools.contains(toolItem)){
-            if(!listOfEquippedItems.contains(toolItem)){
-                listOfEquippedItems.add(toolItem);
-            }
-            System.out.println(toolItem.getName()+"("+toolItem.getID()+")" +" already in use!");
-        }
-        System.out.println(toolItem.getName()+"("+toolItem.getID()+")" + " not found in inventory!");
-    }
+//    //Getters and Setters
+//    public ArrayList<Item> getListOfPotions() {
+//        return listOfPotions;
+//    }
+//
+//    public ArrayList<Item> getListOfTools() {
+//        return listOfTools;
+//    }
+//
+//    public ArrayList<Item> getListOfEquippedItems() {
+//        return listOfEquippedItems;
+//    }
+//
+//    public void addItemToListOfPotions(Item newItem){
+//        listOfPotions.add(newItem);
+//    }
+//    public void addItemToListOfTools(Item newItem){
+//        listOfTools.add(newItem);
+//    }
+//    public void addItemToListOfEquippedItems(Item newItem){
+//        listOfEquippedItems.add(newItem);
+//    }
+//
+//    public void equipPotion(Item potionItem){
+//        // TO DO: use neighbouringCellContainsItem!!!
+//        if (listOfPotions.contains(potionItem)){
+//            if(!listOfEquippedItems.contains(potionItem)){
+//                listOfEquippedItems.add(potionItem);
+//                if (potionItem instanceof HealthPotion){
+//                    ((HealthPotion) potionItem).increaseHealth(this); // increase health
+//                }
+////                listOfEquippedItems.remove(potionItem);
+//            }
+//            System.out.println(potionItem.getName()+"("+potionItem.getID()+")" + " already in use!");
+//        }
+//        System.out.println(potionItem.getName()+"("+potionItem.getID()+")" + " not found in inventory!");
+//    }
+//
+//
+//
+//    public void equipTool(Item toolItem){
+//        if(listOfTools.contains(toolItem)){
+//            if(!listOfEquippedItems.contains(toolItem)){
+//                listOfEquippedItems.add(toolItem);
+//            }
+//            System.out.println(toolItem.getName()+"("+toolItem.getID()+")" +" already in use!");
+//        }
+//        System.out.println(toolItem.getName()+"("+toolItem.getID()+")" + " not found in inventory!");
+//    }
+//
+//    public boolean neighbouringCellContainsItem(int dx, int dy){
+//        Cell nextCell = getCell().getNeighbor(dx, dy);
+//
+//        return !Objects.equals(nextCell.getTileName(), "door") ||
+//                !Objects.equals(nextCell.getTileName(), "wall") ||
+//                !Objects.equals(nextCell.getTileName(), "empty") ||
+//                !Objects.equals(nextCell.getTileName(), "floor");
+//    }
 
-    public boolean neighbouringCellContainsItem(int dx, int dy){
-        Cell nextCell = getCell().getNeighbor(dx, dy);
-
-        return !Objects.equals(nextCell.getTileName(), "door") ||
-                !Objects.equals(nextCell.getTileName(), "wall") ||
-                !Objects.equals(nextCell.getTileName(), "empty") ||
-                !Objects.equals(nextCell.getTileName(), "floor");
-    }
-
-    // TODO
-//    public Inventory getInventory() {
-//        return inventory;
+//    public boolean keyInInventory() {
+//        return this.inventory.getKeyInInventory();
 //    }
 
     public void setName(String name) {
@@ -103,12 +109,32 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = getCell().getNeighbor(dx, dy);
-        if (nextCell.getType()== CellType.FLOOR && nextCell.getActor() == null) {
+        if ((nextCell.getType()== CellType.FLOOR || nextCell.getType()== CellType.FLOOR_FANCY) && nextCell.getActor() == null) {
             //implement item pickup ?
+            if (nextCell.getItem()!=null) {
+                switch (nextCell.getItem().getTileName()){
+                    case "key":
+                        // add key to pickup item
+                        inventory.addItem(nextCell.getItem());
+                        inventory.setKeyInInventory(true);
+                        nextCell.setItem(null);
+                        break;
+                    case "sword":
+                        Actor player = getCell().getActor();
+                        Item sword = nextCell.getItem();
+                        player.setStrength(player.getStrength()+sword.getPoints());
+                        nextCell.setItem(null);
+                        break;
+                    case "shield":
+                        getCell().getActor().increaseArmor(nextCell.getItem().getPoints());
+                        nextCell.setItem(null);
+                        break;
+                }
+            }
             getCell().setActor(null);
             nextCell.setActor(this);
             setCell(nextCell);
-        } else if (nextCell.getType() == CellType.FLOOR && nextCell.getActor() != null){
+        } else if ((nextCell.getType()== CellType.FLOOR || nextCell.getType()== CellType.FLOOR_FANCY) && nextCell.getActor() != null){
             Actor target = nextCell.getActor();
             while(target.getHealth() > 0) {
                 fight(dx, dy, getCell());
@@ -117,11 +143,10 @@ public class Player extends Actor {
             getCell().setActor(null);
             nextCell.setActor(this);
             setCell(nextCell);
+        } else if (nextCell.getType() == CellType.DOOR && inventory.getKeyInInventory()){
+            System.out.println("Ascending to second level [WIP]");
         }
-        //TODO
-//        else if (nextCell.getType() == CellType.DOOR) {
-//
-//        }
+
         this.getCell().setActor(this);
 
     }

@@ -1,13 +1,16 @@
 package com.codecool.dungeoncrawl.logic.items;
 
-public class Shield extends NonPerishableItem{
+import com.codecool.dungeoncrawl.logic.Cell;
 
-    private String name;
-    private int damageDeflected;
-
-
-    public Shield(String name, int ID, int durability, int damageDeflected) {
-        super(name, ID, durability);
-        this.damageDeflected = damageDeflected;
+public class Shield extends Item{
+    public Shield(Cell cell){
+        super(cell);
+        super.points = 4;
     }
+
+    @Override
+    public String getTileName() {
+        return "shield";
+    }
+
 }

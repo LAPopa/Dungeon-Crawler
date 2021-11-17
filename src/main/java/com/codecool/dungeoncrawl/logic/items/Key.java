@@ -1,13 +1,14 @@
 package com.codecool.dungeoncrawl.logic.items;
 
-public class Key extends NonPerishableItem{
+import com.codecool.dungeoncrawl.logic.Cell;
 
-    private String name;
-    private int numberOfUses;
+public class Key extends Item {
+    public Key(Cell cell){
+        super(cell);
+    }
 
-
-    public Key(String name, int ID, int durability, int numberOfUses) {
-        super(name, ID, durability);
-        this.numberOfUses = numberOfUses;
+    @Override
+    public String getTileName() {
+        return "key";
     }
 }

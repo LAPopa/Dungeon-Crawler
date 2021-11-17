@@ -1,15 +1,14 @@
 package com.codecool.dungeoncrawl.logic;
 
-import com.codecool.dungeoncrawl.logic.items.StrengthPotion;
 
 public enum CellType {
     EMPTY("empty"),
     FLOOR("floor"),
+    FLOOR_FANCY("floor_fancy"),
     WALL("wall"),
-    DOOR("door"),
-    SWORD("sword"),
-    HEALTHPOTION("healthpotion"),
-    STRENGTHPOTION("strengthpotion");
+    TORCH("torch"),
+    RUBBLE("rubble"),
+    DOOR("door");
 
     private final String tileName;
 

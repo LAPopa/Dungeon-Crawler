@@ -1,19 +1,16 @@
 package com.codecool.dungeoncrawl.logic.items;
 
-public class Sword extends NonPerishableItem{
+import com.codecool.dungeoncrawl.logic.Cell;
 
-    private String name;
-    private int damageInflicted;
-
-    public Sword(String name, int ID, int durability,int damageInflicted) {
-        super(name, ID, durability);
-        this.damageInflicted = damageInflicted;
+public class Sword extends Item{
+    public Sword(Cell cell){
+        super(cell);
+        super.points = 4;
     }
 
-
-//    public Sword(String name, int damageInflicted) {
-//        this.name = name;
-//        this.damageInflicted = damageInflicted;
-//    }
+    @Override
+    public String getTileName() {
+        return "sword";
+    }
 
 }
