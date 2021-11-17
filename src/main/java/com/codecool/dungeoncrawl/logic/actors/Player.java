@@ -122,10 +122,12 @@ public class Player extends Actor {
                     case "sword":
                         Actor player = getCell().getActor();
                         Item sword = nextCell.getItem();
+                        inventory.addItem(nextCell.getItem());
                         player.setStrength(player.getStrength()+sword.getPoints());
                         nextCell.setItem(null);
                         break;
                     case "shield":
+                        inventory.addItem(nextCell.getItem());
                         getCell().getActor().increaseArmor(nextCell.getItem().getPoints());
                         nextCell.setItem(null);
                         break;
@@ -149,6 +151,11 @@ public class Player extends Actor {
 
         this.getCell().setActor(this);
 
+    }
+
+    public String showInventory(){
+        String inventoryContains = getInventory().toString();
+        return inventoryContains;
     }
 
 

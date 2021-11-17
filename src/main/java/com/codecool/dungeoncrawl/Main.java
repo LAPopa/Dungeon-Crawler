@@ -29,6 +29,7 @@ public class Main extends Application {
     Label strengthLabel = new Label();
     Label armorLabel = new Label();
     Label keyLabel = new Label();
+    Label inventoryLabel = new Label();
 
     public static void main(String[] args) {
         launch(args);
@@ -50,7 +51,10 @@ public class Main extends Application {
         ui.add(armorLabel, 1, 2);
 
         ui.add(new Label("Key in inventory "), 0, 3);
-        ui.add(keyLabel,1, 3);
+        ui.add(keyLabel, 1, 3);
+
+        ui.add(new Label("Inventory: "), 0, 4);
+        ui.add(inventoryLabel, 1, 4);
 
         BorderPane borderPane = new BorderPane();
 
@@ -120,6 +124,7 @@ public class Main extends Application {
             strengthLabel.setText("" + map.getPlayer().getStrength());
             armorLabel.setText("" + map.getPlayer().getArmor());
             keyLabel.setText("" + map.getPlayer().getInventory().getKeyInInventory());
+            inventoryLabel.setText("" + map.getPlayer().showInventory());
         }
     }
 }
