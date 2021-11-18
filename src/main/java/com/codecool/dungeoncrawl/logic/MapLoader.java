@@ -49,27 +49,32 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
-                        case 's':
-                            cell.setType(CellType.FLOOR);
-                            new Skeleton(cell);
-                            break;
                         case '{':
                             cell.setType(CellType.FLOOR);
                             new Passive(cell);
                             break;
+                        case 's':
+                            cell.setType(CellType.FLOOR);
+                            map.addEnemy(new Skeleton(cell));
+                            break;
+
                         case 'j':
                             cell.setType(CellType.FLOOR);
-                            new Juggernaut(cell);
+                            map.addEnemy(new Juggernaut(cell));
                             break;
                         case 'c':
                             cell.setType(CellType.FLOOR);
-                            new Scarab(cell);
+                            map.addEnemy(new Scarab(cell));
+                            break;
+                        case 'p':
+                            cell.setType(CellType.FLOOR);
+                            map.addEnemy(new Phantom(cell));
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
                             Sword sword = new Sword(cell);
                             map.addItem(sword);
-                            System.out.println(map.getItems());
+//                            System.out.println(map.getItems());
                             break;
                         case 'K':
                             cell.setType(CellType.FLOOR);
@@ -77,9 +82,7 @@ public class MapLoader {
                             break;
                         case 'A':
                             cell.setType(CellType.FLOOR);
-                            System.out.println("setting floor for shield");
                             new Shield(cell);
-                            System.out.println("added shield");
                             break;
 
                         default:

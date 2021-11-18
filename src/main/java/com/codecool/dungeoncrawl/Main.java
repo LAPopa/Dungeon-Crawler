@@ -75,34 +75,47 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    private void enemyMove () {
+        System.out.println("START");
+        for (Actor actor : map.getEnemies()) {
+            System.out.println( actor);
+            actor.move();
+        }
+        System.out.println("END");
+    }
+
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
 
                 map.getPlayer().move(0, -1);
+                enemyMove();
                 refresh();
 
                 break;
             case DOWN:
 
                 map.getPlayer().move(0, 1);
+                enemyMove();
                 refresh();
                 break;
             case LEFT:
 
                 map.getPlayer().move(-1, 0);
+                enemyMove();
                 refresh();
                 break;
             case RIGHT:
 
                 map.getPlayer().move(1, 0);
+                enemyMove();
                 refresh();
                 break;
         }
     }
 
     private void refresh() {
-        int count=0;
+
         if (map.getPlayer().isDead()) {
             System.out.println("Player has died");
             map.getPlayer().getCell().setType(CellType.FLOOR);
@@ -117,23 +130,19 @@ public class Main extends Application {
                 for (int y = 0; y < map.getHeight(); y++) {
                     Cell cell = map.getCell(x, y);
                     if (cell.getActor() != null) {
-                        Tiles.drawTile(context, cell.getActor(), x, y);
-                        if (cell.getActor() instanceof Skeleton) {
-//                            System.out.println("Current skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
-                            System.out.println("entering skeleton movement");
-                            int sX = Randomizers.getRandomIntInRange(-1, 2);
-                            int sY = Randomizers.getRandomIntInRange(-1, 2);
+
+//                        if (cell.getActor() instanceof Skeleton) {
+////                            System.out.println("Current skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
+//                            System.out.println("entering skeleton movement");
+//                            int sX = Randomizers.getRandomIntInRange(-1, 2);
+//                            int sY = Randomizers.getRandomIntInRange(-1, 2);
 //                            System.out.println("sX = " + sX + " sY = " + sY);
-                            cell.getActor().move(sX, sY);
-                            count++;
-                            System.out.println("Actor object: "+cell.getActor()+" -movement: "+count);
-                            if (cell.getActor()!=null){
-                                Tiles.drawTile(context, cell.getActor(), cell.getActor().getX(), cell.getActor().getY());
-                            }
+//                            cell.getActor().move(sX, sY);
 //                            System.out.println("New skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
 //                            Tiles.drawTile(context, cell.getActor(), sX, sY);
-                        }
-//                        Tiles.drawTile(context, cell.getActor(), x, y);
+//                        }
+
+                        Tiles.drawTile(context, cell.getActor(), x, y);
 
                     } else if (cell.getItem() != null) {
                         Tiles.drawTile(context, cell.getItem(), x, y);
@@ -150,3 +159,5 @@ public class Main extends Application {
         }
     }
 }
+
+

@@ -34,6 +34,7 @@ public class Tiles {
         tileMap.put("skeleton", new Tile(29, 6));
         tileMap.put("juggernaut", new Tile(27, 3));
         tileMap.put("scarab", new Tile(30, 5));
+        tileMap.put("phantom", new Tile(26, 6));
         tileMap.put("passive_target", new Tile(5, 7));
         tileMap.put("sword", new Tile(0, 30));
         tileMap.put("shield", new Tile(7, 26));

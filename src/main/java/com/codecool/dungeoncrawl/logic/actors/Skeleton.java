@@ -20,12 +20,7 @@ public class Skeleton extends Actor {
     }
 
 
-//    public void move(int dx, int dy) {
-//        int x = Randomizers.getRandomIntInRange(0, 1);
-//        int y = Randomizers.getRandomIntInRange(0, 1);
-//        super.move(x, y);
-//
-//    }
+
 
 //    @Override
 //    public void move(int dx, int dy) {
