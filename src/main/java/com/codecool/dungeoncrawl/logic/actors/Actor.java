@@ -4,7 +4,6 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
 import com.codecool.dungeoncrawl.logic.GameMap;
-import com.codecool.dungeoncrawl.logic.utils.Randomizers;
 
 import java.util.Objects;
 
@@ -35,13 +34,13 @@ public abstract class Actor implements Drawable {
     public void move(int dx, int dy) {
         Cell nextCell = getCell().getNeighbor(dx, dy);
 
-        if (nextCell.getType() != CellType.WALL && (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.FLOOR_FANCY) && nextCell.getActor() == null) {
+        if ((nextCell.getType() != CellType.WALL && nextCell.getType() != CellType.SECRET_WALL)  &&
+                (nextCell.getType() == CellType.FLOOR ||
+                nextCell.getType() == CellType.FLOOR_FANCY ) && nextCell.getActor() == null) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
         }
-
-//        this.cell.setActor(this);
 
     }
 
@@ -49,7 +48,6 @@ public abstract class Actor implements Drawable {
     }
 
     public void fight(int dx, int dy, Cell cell) {
-// ?
         Cell nextCell = cell.getNeighbor(dx, dy);
         Actor player = cell.getActor();
         Actor target = nextCell.getActor();
@@ -63,35 +61,25 @@ public abstract class Actor implements Drawable {
         if (!Objects.equals(target.getTileName(), "passive_target")) {
             if (target.getHealth() <= 0) {
                 map.removeEnemy(target);
-                System.out.println("removed entity " + target);
-//                target.getCell().removeActor();
 
             } else {
 
-//                System.out.println("target armor" + target.getArmor());
                 target.setHealth((targetHP + targetArmor) - playerDamage);
                 if (target.getHealth() <= 0) {
                     map.removeEnemy(target);
-                    System.out.println("removed entity " + target);
-//                target.getCell().removeActor();
 
                 }
                 target.setArmor(target.getArmor() - 2);
-//                System.out.println("target armor after hit" + target.getArmor());
                 player.takeHit(cell, targetDamage);
             }
 
         } else {
             if (target.getHealth() <= 0) {
                 map.removeEnemy(target);
-                System.out.println("removed entity " + target);
-//                target.getCell().removeActor();
             } else {
                 target.setHealth((targetHP + targetArmor) - playerDamage);
                 if (target.getHealth() <= 0) {
                     map.removeEnemy(target);
-                    System.out.println("removed entity " + target);
-//                target.getCell().removeActor();
 
                 }
             }
@@ -131,15 +119,6 @@ public abstract class Actor implements Drawable {
         this.health += value;
     }
 
-
-//    public void fight(int dx, int dy){
-//        Cell nextCell = cell.getNeighbor(dx, dy);
-//
-//        if (nextCell.getActor()!=null){
-//            nextCell.getActor().health-=1;
-//            this.health-=1;
-//        }
-//    }
 
     public void setHealth(int health) {
         this.health = health;

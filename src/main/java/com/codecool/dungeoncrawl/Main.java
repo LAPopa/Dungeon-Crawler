@@ -5,7 +5,6 @@ import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.*;
-import com.codecool.dungeoncrawl.logic.utils.Randomizers;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -19,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Objects;
 
 public class Main extends Application {
     GameMap map = MapLoader.loadMap();
@@ -76,12 +74,9 @@ public class Main extends Application {
     }
 
     private void enemyMove () {
-//        System.out.println("START");
         for (Actor actor : map.getEnemies()) {
-//            System.out.println( actor);
             actor.move();
         }
-//        System.out.println("END");
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
@@ -130,17 +125,6 @@ public class Main extends Application {
                 for (int y = 0; y < map.getHeight(); y++) {
                     Cell cell = map.getCell(x, y);
                     if (cell.getActor() != null) {
-
-//                        if (cell.getActor() instanceof Skeleton) {
-////                            System.out.println("Current skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
-//                            System.out.println("entering skeleton movement");
-//                            int sX = Randomizers.getRandomIntInRange(-1, 2);
-//                            int sY = Randomizers.getRandomIntInRange(-1, 2);
-//                            System.out.println("sX = " + sX + " sY = " + sY);
-//                            cell.getActor().move(sX, sY);
-//                            System.out.println("New skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
-//                            Tiles.drawTile(context, cell.getActor(), sX, sY);
-//                        }
 
                         Tiles.drawTile(context, cell.getActor(), x, y);
 

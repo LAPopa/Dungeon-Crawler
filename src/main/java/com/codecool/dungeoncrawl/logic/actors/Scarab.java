@@ -3,7 +3,6 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 
-import javax.swing.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Scarab extends Actor {
@@ -52,7 +51,11 @@ public class Scarab extends Actor {
                     nextCell = cell.getNeighbor(-3, 0);
 
                 }
-                if (!nextCell.getType().equals(CellType.WALL) && !nextCell.getType().equals(CellType.EMPTY) && nextCell.getActor() == null && !nextCell.getType().equals(CellType.DOOR) && !nextCell.getType().equals(CellType.TORCH) && !nextCell.getType().equals(CellType.RUBBLE)) {
+                if (!nextCell.getType().equals(CellType.WALL) && !nextCell.getType().equals(CellType.EMPTY) && nextCell.getActor() == null
+                        && !nextCell.getType().equals(CellType.DOOR)
+                        && !nextCell.getType().equals(CellType.TORCH)
+                        && !nextCell.getType().equals(CellType.RUBBLE)
+                        && !nextCell.getType().equals(CellType.SECRET_WALL)) {
                     cell.setActor(null);
                     nextCell.setActor(this);
                     cell = nextCell;

@@ -89,7 +89,6 @@ public class GameMap {
     }
 
     public void removeEnemy(Actor enemy) {
-//        System.out.println("removing enemy : " + enemy);
         enemies.remove(enemy);
     }
 

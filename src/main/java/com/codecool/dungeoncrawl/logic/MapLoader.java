@@ -14,7 +14,7 @@ public class MapLoader {
         int width = scanner.nextInt();
         int height = scanner.nextInt();
 
-        scanner.nextLine(); // empty line
+        scanner.nextLine();
 
         GameMap map = new GameMap(width, height, CellType.EMPTY);
         for (int y = 0; y < height; y++) {
@@ -29,6 +29,12 @@ public class MapLoader {
                             break;
                         case '#':
                             cell.setType(CellType.WALL);
+                            break;
+                        case '$':
+                            cell.setType(CellType.SECRET_WALL);
+                            break;
+                        case ';':
+                            cell.setType(CellType.VINE);
                             break;
                         case '.':
                             cell.setType(CellType.FLOOR);
@@ -74,7 +80,6 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             Sword sword = new Sword(cell);
                             map.addItem(sword);
-//                            System.out.println(map.getItems());
                             break;
                         case 'K':
                             cell.setType(CellType.FLOOR);

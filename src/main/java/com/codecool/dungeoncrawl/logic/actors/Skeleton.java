@@ -2,7 +2,6 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
-import com.codecool.dungeoncrawl.logic.utils.Randomizers;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -52,7 +51,11 @@ public class Skeleton extends Actor {
                     nextCell = cell.getNeighbor(-3, 0);
 
                 }
-                if (!nextCell.getType().equals(CellType.WALL) && !nextCell.getType().equals(CellType.EMPTY) && nextCell.getActor() == null && !nextCell.getType().equals(CellType.DOOR) && !nextCell.getType().equals(CellType.TORCH) && !nextCell.getType().equals(CellType.RUBBLE)) {
+                if (!nextCell.getType().equals(CellType.WALL) && !nextCell.getType().equals(CellType.EMPTY) && nextCell.getActor() == null
+                        && !nextCell.getType().equals(CellType.DOOR)
+                        && !nextCell.getType().equals(CellType.TORCH)
+                        && !nextCell.getType().equals(CellType.RUBBLE)
+                        && !nextCell.getType().equals(CellType.SECRET_WALL)) {
                     cell.setActor(null);
                     nextCell.setActor(this);
                     cell = nextCell;
@@ -71,22 +74,5 @@ public class Skeleton extends Actor {
     public void setBurrow(int b) {
         burrow = b;
     }
-//    @Override
-//    public void move(int dx, int dy) {
-//
-//        int x = Randomizers.getRandomIntInRange(0, 1);
-//        int y = Randomizers.getRandomIntInRange(0, 1);
-//        super.move(x, y);
 
-//        Cell nextCell = getCell().getNeighbor(dx, dy);
-//
-//        if (nextCell.getType() != CellType.WALL && (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.FLOOR_FANCY) && nextCell.getActor() == null) {
-//            cell.setActor(null);
-//            nextCell.setActor(this);
-//            cell = nextCell;
-//        }
-//
-//        this.cell.setActor(this);
-
-//    }
 }

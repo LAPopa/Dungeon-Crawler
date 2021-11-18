@@ -5,11 +5,11 @@ import com.codecool.dungeoncrawl.logic.CellType;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Juggernaut extends Actor{
+public class Juggernaut extends Actor {
 
     private int burrow = 5;
 
-    public Juggernaut(Cell cell){
+    public Juggernaut(Cell cell) {
         super(cell);
         this.setHealth(50);
         this.setStrength(10);
@@ -46,7 +46,11 @@ public class Juggernaut extends Actor{
                     nextCell = cell.getNeighbor(-3, 0);
 
                 }
-                if (!nextCell.getType().equals(CellType.WALL) && !nextCell.getType().equals(CellType.EMPTY) && nextCell.getActor() == null && !nextCell.getType().equals(CellType.DOOR) && !nextCell.getType().equals(CellType.TORCH) && !nextCell.getType().equals(CellType.RUBBLE)) {
+                if (!nextCell.getType().equals(CellType.WALL) && !nextCell.getType().equals(CellType.EMPTY) && nextCell.getActor() == null
+                        && !nextCell.getType().equals(CellType.DOOR)
+                        && !nextCell.getType().equals(CellType.TORCH)
+                        && !nextCell.getType().equals(CellType.RUBBLE)
+                        && !nextCell.getType().equals(CellType.SECRET_WALL)) {
                     cell.setActor(null);
                     nextCell.setActor(this);
                     cell = nextCell;
