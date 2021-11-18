@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
+import com.codecool.dungeoncrawl.logic.utils.Randomizers;
 
 import java.util.Objects;
 
@@ -28,6 +29,7 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = getCell().getNeighbor(dx, dy);
+
 
         if (nextCell.getType() != CellType.WALL && (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.FLOOR_FANCY) && nextCell.getActor() == null) {
 //            cell.setActor(null);
