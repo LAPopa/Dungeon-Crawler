@@ -84,6 +84,15 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Shield(cell);
                             break;
+                        case 'H':
+                            cell.setType(CellType.FLOOR);
+                            new HealthPotion(cell);
+                            break;
+
+                        case 'h':
+                            cell.setType(CellType.FLOOR);
+                            new StrengthPotion(cell);
+                            break;
 
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

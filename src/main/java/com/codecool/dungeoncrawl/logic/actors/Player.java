@@ -2,8 +2,10 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.Inventory;
+import com.codecool.dungeoncrawl.logic.items.HealthPotion;
 import com.codecool.dungeoncrawl.logic.items.Item;
 import com.codecool.dungeoncrawl.logic.CellType;
+import com.codecool.dungeoncrawl.logic.items.StrengthPotion;
 
 import java.util.ArrayList;
 
@@ -64,6 +66,16 @@ public class Player extends Actor {
                     case "shield":
                         inventory.addItem(nextCell.getItem());
                         getCell().getActor().increaseArmor(nextCell.getItem().getPoints());
+                        nextCell.setItem(null);
+                        break;
+
+                    case "healthpotion":
+                        HealthPotion.increaseHealth(this);
+                        nextCell.setItem(null);
+                        break;
+
+                    case "strengthpotion":
+                        StrengthPotion.increaseStrength(this);
                         nextCell.setItem(null);
                         break;
                 }
