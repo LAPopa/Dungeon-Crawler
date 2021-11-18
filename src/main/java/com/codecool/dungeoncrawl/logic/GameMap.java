@@ -88,12 +88,18 @@ public class GameMap {
         enemies.add(enemy);
     }
 
+    public void removeEnemy(Actor enemy) {
+        System.out.println("removing enemy : " + enemy);
+        enemies.remove(enemy);
+    }
+
     public List<Actor> getEnemies() {
         return enemies;
     }
 
     public void setEnemies(List<Actor> enemies) {
         this.enemies = enemies;
+
     }
 
 

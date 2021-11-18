@@ -74,7 +74,7 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             Sword sword = new Sword(cell);
                             map.addItem(sword);
-                            System.out.println(map.getItems());
+//                            System.out.println(map.getItems());
                             break;
                         case 'K':
                             cell.setType(CellType.FLOOR);
@@ -82,9 +82,7 @@ public class MapLoader {
                             break;
                         case 'A':
                             cell.setType(CellType.FLOOR);
-                            System.out.println("setting floor for shield");
                             new Shield(cell);
-                            System.out.println("added shield");
                             break;
 
                         default:

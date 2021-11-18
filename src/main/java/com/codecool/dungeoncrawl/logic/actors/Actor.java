@@ -20,6 +20,7 @@ public abstract class Actor implements Drawable {
     public Actor(Cell cell) {
         this.cell = cell;
         this.cell.setActor(this);
+        this.map = getCell().getMap();
     }
 
     public void setCell(Cell cell) {
@@ -61,25 +62,40 @@ public abstract class Actor implements Drawable {
 
         if (!Objects.equals(target.getTileName(), "passive_target")) {
             if (target.getHealth() <= 0) {
-                map.getEnemies().remove(target);
+                map.removeEnemy(target);
                 System.out.println("removed entity " + target);
 //                target.getCell().removeActor();
 
-            }
+            } else {
 
-            System.out.println("target armor" + target.getArmor());
-            target.setHealth((targetHP + targetArmor) - playerDamage);
-            target.setArmor(target.getArmor() - 2);
-            System.out.println("target armor after hit" + target.getArmor());
-            player.takeHit(cell, targetDamage);
+//                System.out.println("target armor" + target.getArmor());
+                target.setHealth((targetHP + targetArmor) - playerDamage);
+                if (target.getHealth() <= 0) {
+                    map.removeEnemy(target);
+                    System.out.println("removed entity " + target);
+//                target.getCell().removeActor();
+
+                }
+                target.setArmor(target.getArmor() - 2);
+//                System.out.println("target armor after hit" + target.getArmor());
+                player.takeHit(cell, targetDamage);
+            }
 
         } else {
-            target.setHealth((targetHP + targetArmor) - playerDamage);
             if (target.getHealth() <= 0) {
-                map.getEnemies().remove(target);
+                map.removeEnemy(target);
                 System.out.println("removed entity " + target);
 //                target.getCell().removeActor();
+            } else {
+                target.setHealth((targetHP + targetArmor) - playerDamage);
+                if (target.getHealth() <= 0) {
+                    map.removeEnemy(target);
+                    System.out.println("removed entity " + target);
+//                target.getCell().removeActor();
+
+                }
             }
+
         }
 
     }
