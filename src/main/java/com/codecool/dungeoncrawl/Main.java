@@ -117,7 +117,7 @@ public class Main extends Application {
                 for (int y = 0; y < map.getHeight(); y++) {
                     Cell cell = map.getCell(x, y);
                     if (cell.getActor() != null) {
-
+                        Tiles.drawTile(context, cell.getActor(), x, y);
                         if (cell.getActor() instanceof Skeleton) {
 //                            System.out.println("Current skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
                             System.out.println("entering skeleton movement");
@@ -133,9 +133,8 @@ public class Main extends Application {
 //                            System.out.println("New skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
 //                            Tiles.drawTile(context, cell.getActor(), sX, sY);
                         }
-                        if (cell.getActor()!=null) {
-                            Tiles.drawTile(context, cell.getActor(), x, y);
-                        }
+//                        Tiles.drawTile(context, cell.getActor(), x, y);
+
                     } else if (cell.getItem() != null) {
                         Tiles.drawTile(context, cell.getItem(), x, y);
                     } else {
