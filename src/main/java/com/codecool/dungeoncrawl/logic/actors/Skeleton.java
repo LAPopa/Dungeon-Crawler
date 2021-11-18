@@ -27,12 +27,12 @@ public class Skeleton extends Actor {
 //
 //    }
 
-    @Override
-    public void move(int dx, int dy) {
-
-        int x = Randomizers.getRandomIntInRange(0, 1);
-        int y = Randomizers.getRandomIntInRange(0, 1);
-        super.move(x, y);
+//    @Override
+//    public void move(int dx, int dy) {
+//
+//        int x = Randomizers.getRandomIntInRange(0, 1);
+//        int y = Randomizers.getRandomIntInRange(0, 1);
+//        super.move(x, y);
 
 //        Cell nextCell = getCell().getNeighbor(dx, dy);
 //
@@ -44,5 +44,5 @@ public class Skeleton extends Actor {
 //
 //        this.cell.setActor(this);
 
-    }
+//    }
 }

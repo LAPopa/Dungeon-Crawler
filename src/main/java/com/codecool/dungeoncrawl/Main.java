@@ -102,7 +102,7 @@ public class Main extends Application {
     }
 
     private void refresh() {
-
+        int count=0;
         if (map.getPlayer().isDead()) {
             System.out.println("Player has died");
             map.getPlayer().getCell().setType(CellType.FLOOR);
@@ -123,14 +123,19 @@ public class Main extends Application {
                             System.out.println("entering skeleton movement");
                             int sX = Randomizers.getRandomIntInRange(-1, 2);
                             int sY = Randomizers.getRandomIntInRange(-1, 2);
-                            System.out.println("sX = " + sX + " sY = " + sY);
+//                            System.out.println("sX = " + sX + " sY = " + sY);
                             cell.getActor().move(sX, sY);
-                            System.out.println("New skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
-                            Tiles.drawTile(context, cell.getActor(), sX, sY);
+                            count++;
+                            System.out.println("Actor object: "+cell.getActor()+" -movement: "+count);
+                            if (cell.getActor()!=null){
+                                Tiles.drawTile(context, cell.getActor(), cell.getActor().getX(), cell.getActor().getY());
+                            }
+//                            System.out.println("New skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
+//                            Tiles.drawTile(context, cell.getActor(), sX, sY);
                         }
-
-                        Tiles.drawTile(context, cell.getActor(), x, y);
-
+                        if (cell.getActor()!=null) {
+                            Tiles.drawTile(context, cell.getActor(), x, y);
+                        }
                     } else if (cell.getItem() != null) {
                         Tiles.drawTile(context, cell.getItem(), x, y);
                     } else {

@@ -40,7 +40,7 @@ public abstract class Actor implements Drawable {
             setCell(nextCell);
         }
 
-        this.cell.setActor(this);
+//        this.cell.setActor(this);
 
     }
 
