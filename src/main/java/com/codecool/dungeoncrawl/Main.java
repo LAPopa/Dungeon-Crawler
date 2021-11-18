@@ -76,12 +76,12 @@ public class Main extends Application {
     }
 
     private void enemyMove () {
-        System.out.println("START");
+//        System.out.println("START");
         for (Actor actor : map.getEnemies()) {
-            System.out.println( actor);
+//            System.out.println( actor);
             actor.move();
         }
-        System.out.println("END");
+//        System.out.println("END");
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
