@@ -49,21 +49,26 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
-                        case 's':
-                            cell.setType(CellType.FLOOR);
-                            new Skeleton(cell);
-                            break;
                         case '{':
                             cell.setType(CellType.FLOOR);
                             new Passive(cell);
                             break;
+                        case 's':
+                            cell.setType(CellType.FLOOR);
+                            map.addEnemy(new Skeleton(cell));
+                            break;
+
                         case 'j':
                             cell.setType(CellType.FLOOR);
-                            new Juggernaut(cell);
+                            map.addEnemy(new Juggernaut(cell));
                             break;
                         case 'c':
                             cell.setType(CellType.FLOOR);
-                            new Scarab(cell);
+                            map.addEnemy(new Scarab(cell));
+                            break;
+                        case 'p':
+                            cell.setType(CellType.FLOOR);
+                            map.addEnemy(new Phantom(cell));
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);

@@ -75,27 +75,38 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    private void enemyMove () {
+        for (Actor actor : map.getEnemies()) {
+            System.out.println(actor);
+            actor.move();
+        }
+    }
+
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
 
                 map.getPlayer().move(0, -1);
+                enemyMove();
                 refresh();
 
                 break;
             case DOWN:
 
                 map.getPlayer().move(0, 1);
+                enemyMove();
                 refresh();
                 break;
             case LEFT:
 
                 map.getPlayer().move(-1, 0);
+                enemyMove();
                 refresh();
                 break;
             case RIGHT:
 
                 map.getPlayer().move(1, 0);
+                enemyMove();
                 refresh();
                 break;
         }
@@ -118,16 +129,16 @@ public class Main extends Application {
                     Cell cell = map.getCell(x, y);
                     if (cell.getActor() != null) {
 
-                        if (cell.getActor() instanceof Skeleton) {
-//                            System.out.println("Current skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
-                            System.out.println("entering skeleton movement");
-                            int sX = Randomizers.getRandomIntInRange(-1, 2);
-                            int sY = Randomizers.getRandomIntInRange(-1, 2);
-                            System.out.println("sX = " + sX + " sY = " + sY);
-                            cell.getActor().move(sX, sY);
-                            System.out.println("New skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
-                            Tiles.drawTile(context, cell.getActor(), sX, sY);
-                        }
+//                        if (cell.getActor() instanceof Skeleton) {
+////                            System.out.println("Current skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
+//                            System.out.println("entering skeleton movement");
+//                            int sX = Randomizers.getRandomIntInRange(-1, 2);
+//                            int sY = Randomizers.getRandomIntInRange(-1, 2);
+//                            System.out.println("sX = " + sX + " sY = " + sY);
+//                            cell.getActor().move(sX, sY);
+//                            System.out.println("New skeleton position: X :" + cell.getActor().getX() + "Y: " + cell.getActor().getY());
+//                            Tiles.drawTile(context, cell.getActor(), sX, sY);
+//                        }
 
                         Tiles.drawTile(context, cell.getActor(), x, y);
 
@@ -146,3 +157,5 @@ public class Main extends Application {
         }
     }
 }
+
+

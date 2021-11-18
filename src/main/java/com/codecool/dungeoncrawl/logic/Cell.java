@@ -28,6 +28,7 @@ public class Cell implements Drawable {
     }
 
     public void setActor(Actor actor) {
+
         this.actor = actor;
     }
 
@@ -37,6 +38,7 @@ public class Cell implements Drawable {
     }
 
     public Item getItem() {
+
         return item;
     }
 
@@ -47,12 +49,23 @@ public class Cell implements Drawable {
 
 
     public Cell getNeighbor(int dx, int dy) {
+
         return gameMap.getCell(x + dx, y + dy);
     }
 
     @Override
     public String getTileName() {
+
         return type.getTileName();
+    }
+
+    public GameMap getMap() {
+
+        return gameMap;
+    }
+
+    public void removeActor() {
+        gameMap.getEnemies().remove(actor);
     }
 
     public int getX() {

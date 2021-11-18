@@ -3,15 +3,19 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
+import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.utils.Randomizers;
 
 import java.util.Objects;
 
 public abstract class Actor implements Drawable {
     public Cell cell;
+
+    public GameMap map;
     private int health = 10;
     private int strength = 5;
     private int armor = 0;
+
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -30,18 +34,17 @@ public abstract class Actor implements Drawable {
     public void move(int dx, int dy) {
         Cell nextCell = getCell().getNeighbor(dx, dy);
 
-
         if (nextCell.getType() != CellType.WALL && (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.FLOOR_FANCY) && nextCell.getActor() == null) {
-//            cell.setActor(null);
-//            nextCell.setActor(this);
-//            cell = nextCell;
-            getCell().setActor(null);
+            cell.setActor(null);
             nextCell.setActor(this);
-            setCell(nextCell);
+            cell = nextCell;
         }
 
-        this.cell.setActor(this);
+//        this.cell.setActor(this);
 
+    }
+
+    public void move() {
     }
 
     public void fight(int dx, int dy, Cell cell) {
@@ -57,6 +60,12 @@ public abstract class Actor implements Drawable {
 
 
         if (!Objects.equals(target.getTileName(), "passive_target")) {
+            if (target.getHealth() <= 0) {
+                map.getEnemies().remove(target);
+                System.out.println("removed entity " + target);
+//                target.getCell().removeActor();
+
+            }
 
             System.out.println("target armor" + target.getArmor());
             target.setHealth((targetHP + targetArmor) - playerDamage);
@@ -66,6 +75,11 @@ public abstract class Actor implements Drawable {
 
         } else {
             target.setHealth((targetHP + targetArmor) - playerDamage);
+            if (target.getHealth() <= 0) {
+                map.getEnemies().remove(target);
+                System.out.println("removed entity " + target);
+//                target.getCell().removeActor();
+            }
         }
 
     }
