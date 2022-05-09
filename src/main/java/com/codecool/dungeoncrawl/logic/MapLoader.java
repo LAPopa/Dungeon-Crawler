@@ -5,11 +5,12 @@ import com.codecool.dungeoncrawl.logic.items.*;
 
 import java.io.InputStream;
 import java.util.Scanner;
-import java.awt.*;
 
 public class MapLoader {
-    public static GameMap loadMap() {
-        InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
+    public static GameMap loadMap(int level) {
+
+//        InputStream is = MapLoader.class.getResourceAsStream("/map1.txt");
+        InputStream is = MapLoader.class.getResourceAsStream("/map"+level+".txt");
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
@@ -42,6 +43,12 @@ public class MapLoader {
                         case ',':
                             cell.setType(CellType.FLOOR_FANCY);
                             break;
+                        case 'w':
+                            cell.setType(CellType.WATER);
+                            break;
+                        case 'W':
+                            cell.setType(CellType.WATERFALL);
+                            break;
                         case 't':
                             cell.setType(CellType.TORCH);
                             break;
@@ -53,7 +60,10 @@ public class MapLoader {
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell));
+                            if (level == 1) {
+                                map.setPlayer(new Player(cell));
+
+                            }
                             break;
                         case '{':
                             cell.setType(CellType.FLOOR);
