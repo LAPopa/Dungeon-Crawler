@@ -40,7 +40,7 @@ Current features include:
   <br/>
   <br/>
 
-- Spawrling maps to explore and various items to power you up. <br/><br/>
+- Sprawling maps to explore and various items to power you up. <br/><br/>
  ![2](https://user-images.githubusercontent.com/79319253/167802867-17d6a6b4-481b-4304-9596-700af01cd63e.png)
 
   <br/><br/><br/>
